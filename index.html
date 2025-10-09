@@ -1,327 +1,389 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Igreja Exemplo</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
     <style>
-        body {
-            background: linear-gradient(to bottom, #3B6D77, #ffffff);
-            min-height: 100vh;
-            margin: 0;
-        }
+      body {
+        background: linear-gradient(to bottom, #3b6d77, #ffffff);
+        min-height: 100vh;
+        margin: 0;
+      }
 
-        /* LOGO */
-        .navbar-logo {
-            width: 40px;
-            height: 40px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
+      /* LOGO */
+      .navbar-logo {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
 
-        /* NAVBAR */
-        .custom-navbar {
-            background: linear-gradient(to right, #3B6D77, #2C5058);
-            backdrop-filter: blur(2px);
-            border-bottom: none !important;
-        }
+      /* NAVBAR */
+      .custom-navbar {
+        background: linear-gradient(to right, #3b6d77, #2c5058);
+        backdrop-filter: blur(2px);
+        border-bottom: none !important;
+      }
 
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            transition: top 0.4s ease-in-out;
-            z-index: 1050;
-            /* acima do offcanvas */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            /* sombra suave */
-        }
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        transition: top 0.4s ease-in-out;
+        z-index: 1050;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      }
 
-        /* OFFCANVAS (menu lateral) */
-        .custom-offcanvas {
-            top: 0 !important;
-            height: 100vh !important;
-            color: white;
-            border: none;
-            background: linear-gradient(to right, #3B6D77, #2C5058) !important; 
-            border-bottom: none !important;
-        }
+      /* OFFCANVAS (menu lateral) */
+      .custom-offcanvas {
+        top: 0 !important;
+        height: 100vh !important;
+        color: white;
+        border: none;
+        /* Gradiente com transparência (usar rgba) */
+        background: linear-gradient(
+          to right,
+          rgba(59, 109, 119, 0.75),
+          rgba(44, 80, 88, 0.75)
+        ) !important;
 
-        .custom-offcanvas .offcanvas-header {
-            background: transparent;
-            border-bottom: none !important;
-        }
+        /* Efeito de vidro fosco */
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
 
-        /* HERO SECTION */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                url('https://ugc.production.linktr.ee/92a508fb-a286-4734-b384-c4b17161a1e7_NOVOS-DESTAQUES-IBMS---2-.png?io=true&size=avatar-v3_0') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 20px;
-        }
+        border-bottom: none !important;
+        transition: background 0.4s ease-in-out;
+      }
 
-        .hero-content h1 {
-            font-size: 2.8rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
+      .custom-offcanvas .offcanvas-header {
+        background: transparent;
+        border-bottom: none !important;
+      }
 
-        .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 25px;
-        }
+      /* HERO SECTION */
+      .hero {
+        height: 100vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("https://ugc.production.linktr.ee/92a508fb-a286-4734-b384-c4b17161a1e7_NOVOS-DESTAQUES-IBMS---2-.png?io=true&size=avatar-v3_0")
+            center/cover no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        padding: 20px;
+      }
 
-        .hero-content .btn {
-            padding: 12px 25px;
-            font-size: 1.1rem;
-            border-radius: 30px;
-        }
+      .hero-content h1 {
+        font-size: 2.8rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
 
-        /* RESPONSIVIDADE */
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2rem;
-            }
+      .hero-content p {
+        font-size: 1.3rem;
+        margin-bottom: 25px;
+      }
 
-            .hero-content p {
-                font-size: 1rem;
-            }
+      .hero-content .btn {
+        padding: 12px 25px;
+        font-size: 1.1rem;
+        border-radius: 30px;
+      }
+
+      /* Seção com imagem de fundo */
+      .image-section {
+        position: relative;
+        width: 100%;
+        height: 100vh; /* altura total da tela */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        overflow: hidden;
+      }
+
+      /* Imagem de fundo (via <img src>) */
+      .image-section .bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* cobre tudo sem distorcer */
+        z-index: 1;
+        filter: brightness(40%) blur(1.5px); /* escuro e levemente fosco */
+      }
+
+      /* Camada extra (caso queira ainda mais escurecido) */
+      .image-section .overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 2;
+      }
+
+      /* Conteúdo por cima da imagem */
+      .image-section .content {
+        position: relative;
+        z-index: 3;
+        max-width: 700px;
+        padding: 30px;
+      }
+
+      .image-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        font-weight: bold;
+      }
+
+      .image-section p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+      }
+
+      /* Carrossel à esquerda */
+      .carousel-container {
+        position: relative;
+        margin-top: 40px; /* Ajustando a distância do topo para não sobrepor o banner */
+        width: 400px; /* Largura maior do carrossel */
+        height: 700px; /* Altura maior */
+        overflow: hidden;
+        border-radius: 20px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
+        z-index: 10;
+        margin-left: 30px; /* Ajustando o espaço à esquerda */
+      }
+
+      .carousel-inner {
+        height: 100%;
+        margin: 0; /* Removendo margens extras */
+        padding: 0; /* Removendo preenchimentos extras */
+      }
+
+      .carousel-inner img {
+        width: 100%; /* A imagem ocupa toda a largura do container */
+        height: 100%; /* A imagem ocupa toda a altura do container */
+        object-fit: cover; /* Garante que a imagem cubra a área do carrossel sem distorcer */
+      }
+
+      .carousel-indicators {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .carousel-control-prev,
+      .carousel-control-next {
+        width: 10%; /* Tamanho dos controles de navegação */
+      }
+
+      /* Responsividade para telas pequenas */
+      @media (max-width: 768px) {
+        .carousel-container {
+          width: 90%; /* Largura menor em telas pequenas */
+          height: 500px; /* Altura reduzida */
+          margin-left: 10px; /* Ajuste da margem esquerda */
         }
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <!-- Navbar -->
     <nav class="navbar navbar-dark custom-navbar fixed-top">
-        <div class="container-fluid">
-            <!-- LOGO + TEXTO -->
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="https://ugc.production.linktr.ee/92a508fb-a286-4734-b384-c4b17161a1e7_NOVOS-DESTAQUES-IBMS---2-.png?io=true&size=avatar-v3_0"
-                    class="navbar-logo" alt="Logo IBMS" />
-                <span>IBMS</span>
-            </a>
+      <div class="container-fluid">
+        <!-- LOGO + TEXTO -->
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img
+            src="https://ugc.production.linktr.ee/92a508fb-a286-4734-b384-c4b17161a1e7_NOVOS-DESTAQUES-IBMS---2-.png?io=true&size=avatar-v3_0"
+            class="navbar-logo"
+            alt="Logo IBMS"
+          />
+          <span>IBMS</span>
+        </a>
 
-            <!-- Botão do menu (hambúrguer) -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <!-- Botão do menu (hambúrguer) -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasDarkNavbar"
+          aria-controls="offcanvasDarkNavbar"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <!-- Menu offcanvas -->
-            <div class="offcanvas offcanvas-end custom-offcanvas"
-                style="background: linear-gradient(to bottom, #3B6D77, #A7C6CC); color: white;" tabindex="-1"
-                id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-                </div>
+        <!-- Menu offcanvas -->
+        <!-- Menu offcanvas -->
+        <div
+          class="offcanvas offcanvas-end custom-offcanvas"
+          tabindex="-1"
+          id="offcanvasDarkNavbar"
+          aria-labelledby="offcanvasDarkNavbarLabel"
+        >
+        
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
 
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#inicio">Início</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#sobre">Sobre</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#cultos">Cultos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#contato">Contato</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#inicio"
+                  >Início</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#sobre">Sobre</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#cultos">Cultos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contato">Contato</a>
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
     </nav>
 
     <!-- Seção Início (Hero) -->
     <section id="inicio" class="hero">
-        <div class="hero-content">
-            <h1>Igreja Batista Monte Sinai</h1>
-            <p>Uma família de fé, amor e esperança em Cristo.</p>
-            <a href="#sobre" class="btn btn-light">Conheça mais</a>
-        </div>
+      <div class="hero-content">
+        <h1>Igreja Batista Monte Sinai</h1>
+        <p>Uma família de fé, amor e esperança em Cristo.</p>
+        <a href="#sobre" class="btn btn-light">Conheça mais</a>
+      </div>
     </section>
-    <p>In the following sections, we will discuss the history of Lorem Ipsum, the benefits of using it, and the various
-        methods for generating this text efficiently.
-        Understanding Lorem Ipsum Text
-        Lorem Ipsum is a type of placeholder text commonly used in the design and publishing industries. Originating
-        from a scrambled version of a Latin text by Cicero, it has been utilized for centuries to simulate the
-        appearance of written content without distracting the viewer with meaningful text. This section explores the
-        history and purpose of Lorem Ipsum, highlighting its significance in modern applications.
 
-        The History of Lorem Ipsum
-        Origins in Latin Literature : Lorem Ipsum derives from sections of "De Finibus Bonorum et Malorum," a work by
-        Cicero written in 45 BC. The text was altered to create a nonsensical yet visually coherent placeholder.
-        Adoption in Printing : During the 1500s, printers began using Lorem Ipsum to demonstrate typefaces and layouts,
-        a practice that continues today.
-        Purpose and Applications
-        Design and Layout Testing : Lorem Ipsum allows designers to focus on visual elements without being influenced by
-        the content.
-        Content Placeholder : It serves as a temporary substitute for actual text during the development phase of
-        projects.
-        Tools for Generating Lorem Ipsum
-        Modern technology offers various tools to generate Lorem Ipsum text efficiently. These tools cater to different
-        needs, from simple text generation to advanced customization.
+    <!-- Seção com imagem de fundo (usando <img src>) -->
+    <section id="sobre" class="image-section">
+      <!-- Imagem de fundo -->
+      <img src="img/img2.JPG" alt="Imagem de fundo" class="bg-image" />
 
-        Online Generators
-        Web-Based Tools : Websites like "Lorem Ipsum Generator" provide instant access to customizable placeholder text.
-        Features and Options : Users can specify the number of paragraphs, words, or characters required.
-        Software Integration
-        Design Software Plugins : Tools like Adobe InDesign and Sketch include built-in Lorem Ipsum generators.
-        Coding Libraries : Developers can use libraries like "Lorem" in programming languages to automate text
-        generation.
-        Benefits of Using Lorem Ipsum
-        Utilizing Lorem Ipsum text offers several advantages, particularly in professional settings.
+      <!-- Camada escura -->
+      <div class="overlay"></div>
 
-        Enhancing Productivity
-        Streamlined Workflow : Placeholder text speeds up the design and development process.
-        Focus on Visuals : It allows teams to concentrate on layout and aesthetics without content distractions.
-        Versatility
-        Adaptable Formats : Lorem Ipsum can be tailored to fit various project requirements.
-        Universal Application : Its use spans industries, including publishing, web development, and advertising.
-        Customization and Alternatives
-        While Lorem Ipsum is widely used, customization options and alternative placeholder texts are available to suit
-        specific needs.
+      <!-- Conteúdo por cima -->
+      <div class="content">
+        <h2>Sobre Nós</h2>
+        <p>
+          A Igreja Batista Monte Sinai é uma família de fé, amor e esperança.
+          Servimos a Deus e à comunidade com alegria e dedicação.
+        </p>
+        <a href="#contato" class="btn btn-light mt-3">Fale Conosco</a>
+      </div>
+    </section>
 
-        Customization Options
-        Language Variations : Generators can produce text in different languages or styles.
-        Content Themes : Some tools offer themed placeholder text, such as technical jargon or humorous phrases.
-        Alternatives to Lorem Ipsum
-        Realistic Placeholder Text : Using actual content samples for more accurate testing.
-        Creative Text Options : Employing unique placeholder text to align with project themes.
-        By understanding these aspects, users can effectively utilize Lorem Ipsum text in their workflows, ensuring
-        efficiency and creativity.
-
-        In conclusion, generating Lorem Ipsum text is a straightforward and effective way to create placeholder content
-        for various design and development projects. By understanding its origins, applications, and the tools available
-        for its generation, users can leverage this text to enhance their workflows and focus on the creative aspects of
-        their work. Whether you're a designer, developer, or writer, Lorem Ipsum serves as a versatile tool that
-        simplifies the process of content creation and layout design. As technology continues to evolve, the methods for
-        generating and utilizing Lorem Ipsum text will likely become even more sophisticated, offering greater
-        customization and efficiency. Embracing these advancements ensures that professionals can maintain productivity
-        and creativity in their respective fields.
-
-        Disclaimer:
-        The content provided on our blog site traverses numerous categories, offering readers valuable and practical
-        information. Readers can use the editorial team’s research and data to gain more insights into their topics of
-        interest. However, they are requested not to treat the articles as conclusive. The website team cannot be held
-        responsible for differences in data or inaccuracies found across other platforms. Please also note that the site
-        might also miss out on various schemes and offers available that the readers may find more beneficial than the
-        ones we cover.</p>
-
-    <p>In the following sections, we will discuss the history of Lorem Ipsum, the benefits of using it, and the various
-        methods for generating this text efficiently.
-        Understanding Lorem Ipsum Text
-        Lorem Ipsum is a type of placeholder text commonly used in the design and publishing industries. Originating
-        from a scrambled version of a Latin text by Cicero, it has been utilized for centuries to simulate the
-        appearance of written content without distracting the viewer with meaningful text. This section explores the
-        history and purpose of Lorem Ipsum, highlighting its significance in modern applications.
-
-        The History of Lorem Ipsum
-        Origins in Latin Literature : Lorem Ipsum derives from sections of "De Finibus Bonorum et Malorum," a work by
-        Cicero written in 45 BC. The text was altered to create a nonsensical yet visually coherent placeholder.
-        Adoption in Printing : During the 1500s, printers began using Lorem Ipsum to demonstrate typefaces and layouts,
-        a practice that continues today.
-        Purpose and Applications
-        Design and Layout Testing : Lorem Ipsum allows designers to focus on visual elements without being influenced by
-        the content.
-        Content Placeholder : It serves as a temporary substitute for actual text during the development phase of
-        projects.
-        Tools for Generating Lorem Ipsum
-        Modern technology offers various tools to generate Lorem Ipsum text efficiently. These tools cater to different
-        needs, from simple text generation to advanced customization.
-
-        Online Generators
-        Web-Based Tools : Websites like "Lorem Ipsum Generator" provide instant access to customizable placeholder text.
-        Features and Options : Users can specify the number of paragraphs, words, or characters required.
-        Software Integration
-        Design Software Plugins : Tools like Adobe InDesign and Sketch include built-in Lorem Ipsum generators.
-        Coding Libraries : Developers can use libraries like "Lorem" in programming languages to automate text
-        generation.
-        Benefits of Using Lorem Ipsum
-        Utilizing Lorem Ipsum text offers several advantages, particularly in professional settings.
-
-        Enhancing Productivity
-        Streamlined Workflow : Placeholder text speeds up the design and development process.
-        Focus on Visuals : It allows teams to concentrate on layout and aesthetics without content distractions.
-        Versatility
-        Adaptable Formats : Lorem Ipsum can be tailored to fit various project requirements.
-        Universal Application : Its use spans industries, including publishing, web development, and advertising.
-        Customization and Alternatives
-        While Lorem Ipsum is widely used, customization options and alternative placeholder texts are available to suit
-        specific needs.
-
-        Customization Options
-        Language Variations : Generators can produce text in different languages or styles.
-        Content Themes : Some tools offer themed placeholder text, such as technical jargon or humorous phrases.
-        Alternatives to Lorem Ipsum
-        Realistic Placeholder Text : Using actual content samples for more accurate testing.
-        Creative Text Options : Employing unique placeholder text to align with project themes.
-        By understanding these aspects, users can effectively utilize Lorem Ipsum text in their workflows, ensuring
-        efficiency and creativity.
-
-        In conclusion, generating Lorem Ipsum text is a straightforward and effective way to create placeholder content
-        for various design and development projects. By understanding its origins, applications, and the tools available
-        for its generation, users can leverage this text to enhance their workflows and focus on the creative aspects of
-        their work. Whether you're a designer, developer, or writer, Lorem Ipsum serves as a versatile tool that
-        simplifies the process of content creation and layout design. As technology continues to evolve, the methods for
-        generating and utilizing Lorem Ipsum text will likely become even more sophisticated, offering greater
-        customization and efficiency. Embracing these advancements ensures that professionals can maintain productivity
-        and creativity in their respective fields.
-
-        Disclaimer:
-        The content provided on our blog site traverses numerous categories, offering readers valuable and practical
-        information. Readers can use the editorial team’s research and data to gain more insights into their topics of
-        interest. However, they are requested not to treat the articles as conclusive. The website team cannot be held
-        responsible for differences in data or inaccuracies found across other platforms. Please also note that the site
-        might also miss out on various schemes and offers available that the readers may find more beneficial than the
-        ones we cover.</p>
-
+    <!-- Carrossel à esquerda -->
+    <div class="carousel-container">
+      <div
+        id="carouselExampleIndicators"
+        class="carousel slide h-100"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="0"
+            class="active"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="2"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="img/img1.JPG" class="d-block w-100" alt="Evento 2" />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="https://via.placeholder.com/900x400?text=Evento+2"
+              class="d-block w-100"
+              alt="Evento 2"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="https://via.placeholder.com/900x400?text=Evento+3"
+              class="d-block w-100"
+              alt="Evento 3"
+            />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        let lastScrollTop = 0;
-        const navbar = document.querySelector('.navbar');
-        const offcanvas = document.querySelector('.offcanvas');
+      let lastScrollTop = 0;
+      const navbar = document.querySelector(".navbar");
+      const offcanvas = document.querySelector(".offcanvas");
 
-        window.addEventListener('scroll', function () {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const offcanvasIsOpen = offcanvas.classList.contains('show');
+      window.addEventListener("scroll", function () {
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+        const offcanvasIsOpen = offcanvas.classList.contains("show");
 
-            if (!offcanvasIsOpen) {
-                if (scrollTop > lastScrollTop && scrollTop > 100) {
-                    navbar.style.top = "-80px"; // some ao rolar para baixo
-                } else {
-                    navbar.style.top = "0"; // reaparece ao rolar para cima
-                }
-            }
+        if (!offcanvasIsOpen) {
+          if (scrollTop > lastScrollTop && scrollTop > 100) {
+            navbar.style.top = "-80px"; // some ao rolar para baixo
+          } else {
+            navbar.style.top = "0"; // reaparece ao rolar para cima
+          }
+        }
 
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-        });
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+      });
 
-        offcanvas.addEventListener('show.bs.offcanvas', () => {
-            navbar.style.top = "0";
-        });
+      offcanvas.addEventListener("show.bs.offcanvas", () => {
+        navbar.style.top = "0";
+      });
     </script>
-
-</body>
-
+  </body>
 </html>
