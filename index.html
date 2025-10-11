@@ -1,389 +1,697 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Igreja Exemplo</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <style>
-      body {
-        background: linear-gradient(to bottom, #3b6d77, #ffffff);
-        min-height: 100vh;
-        margin: 0;
-      }
-
-      /* LOGO */
-      .navbar-logo {
-        width: 40px;
-        height: 40px;
-        object-fit: cover;
-        border-radius: 50%;
-        margin-right: 10px;
-      }
-
-      /* NAVBAR */
-      .custom-navbar {
-        background: linear-gradient(to right, #3b6d77, #2c5058);
-        backdrop-filter: blur(2px);
-        border-bottom: none !important;
-      }
-
-      .navbar {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        transition: top 0.4s ease-in-out;
-        z-index: 1050;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-      }
-
-      /* OFFCANVAS (menu lateral) */
-      .custom-offcanvas {
-        top: 0 !important;
-        height: 100vh !important;
-        color: white;
-        border: none;
-        /* Gradiente com transparência (usar rgba) */
-        background: linear-gradient(
-          to right,
-          rgba(59, 109, 119, 0.75),
-          rgba(44, 80, 88, 0.75)
-        ) !important;
-
-        /* Efeito de vidro fosco */
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-
-        border-bottom: none !important;
-        transition: background 0.4s ease-in-out;
-      }
-
-      .custom-offcanvas .offcanvas-header {
-        background: transparent;
-        border-bottom: none !important;
-      }
-
-      /* HERO SECTION */
-      .hero {
-        height: 100vh;
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-          url("https://ugc.production.linktr.ee/92a508fb-a286-4734-b384-c4b17161a1e7_NOVOS-DESTAQUES-IBMS---2-.png?io=true&size=avatar-v3_0")
-            center/cover no-repeat;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: white;
-        padding: 20px;
-      }
-
-      .hero-content h1 {
-        font-size: 2.8rem;
-        font-weight: bold;
-        margin-bottom: 15px;
-      }
-
-      .hero-content p {
-        font-size: 1.3rem;
-        margin-bottom: 25px;
-      }
-
-      .hero-content .btn {
-        padding: 12px 25px;
-        font-size: 1.1rem;
-        border-radius: 30px;
-      }
-
-      /* Seção com imagem de fundo */
-      .image-section {
-        position: relative;
-        width: 100%;
-        height: 100vh; /* altura total da tela */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        color: white;
-        overflow: hidden;
-      }
-
-      /* Imagem de fundo (via <img src>) */
-      .image-section .bg-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* cobre tudo sem distorcer */
-        z-index: 1;
-        filter: brightness(40%) blur(1.5px); /* escuro e levemente fosco */
-      }
-
-      /* Camada extra (caso queira ainda mais escurecido) */
-      .image-section .overlay {
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.4);
-        z-index: 2;
-      }
-
-      /* Conteúdo por cima da imagem */
-      .image-section .content {
-        position: relative;
-        z-index: 3;
-        max-width: 700px;
-        padding: 30px;
-      }
-
-      .image-section h2 {
-        font-size: 2.5rem;
-        margin-bottom: 20px;
-        font-weight: bold;
-      }
-
-      .image-section p {
-        font-size: 1.2rem;
-        line-height: 1.6;
-      }
-
-      /* Carrossel à esquerda */
-      .carousel-container {
-        position: relative;
-        margin-top: 40px; /* Ajustando a distância do topo para não sobrepor o banner */
-        width: 400px; /* Largura maior do carrossel */
-        height: 700px; /* Altura maior */
-        overflow: hidden;
-        border-radius: 20px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-        background-color: #fff;
-        z-index: 10;
-        margin-left: 30px; /* Ajustando o espaço à esquerda */
-      }
-
-      .carousel-inner {
-        height: 100%;
-        margin: 0; /* Removendo margens extras */
-        padding: 0; /* Removendo preenchimentos extras */
-      }
-
-      .carousel-inner img {
-        width: 100%; /* A imagem ocupa toda a largura do container */
-        height: 100%; /* A imagem ocupa toda a altura do container */
-        object-fit: cover; /* Garante que a imagem cubra a área do carrossel sem distorcer */
-      }
-
-      .carousel-indicators {
-        position: absolute;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-
-      .carousel-control-prev,
-      .carousel-control-next {
-        width: 10%; /* Tamanho dos controles de navegação */
-      }
-
-      /* Responsividade para telas pequenas */
-      @media (max-width: 768px) {
-        .carousel-container {
-          width: 90%; /* Largura menor em telas pequenas */
-          height: 500px; /* Altura reduzida */
-          margin-left: 10px; /* Ajuste da margem esquerda */
+        body {
+            background: linear-gradient(to bottom, #3b6d77 0%, #6fa3ad 60%, #d9e6e8 100%);
+            min-height: 100vh;
+            margin: 0;
         }
-      }
-    </style>
-  </head>
 
-  <body>
+        /* LOGO */
+        .navbar-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        /* NAVBAR */
+        .custom-navbar {
+            background: linear-gradient(to right, #3b6d77, #2c5058);
+            backdrop-filter: blur(2px);
+            border-bottom: none !important;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            transition: all 0.3s ease;
+            z-index: 1050;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* OFFCANVAS (menu lateral) */
+        .custom-offcanvas {
+            top: 0 !important;
+            height: 100vh !important;
+            color: white;
+            border: none;
+            /* Gradiente com transparência (usar rgba) */
+            background: linear-gradient(to right,
+                    rgba(59, 109, 119, 0.75),
+                    rgba(44, 80, 88, 0.75)) !important;
+
+            /* Efeito de vidro fosco */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            border-bottom: none !important;
+            transition: background 0.4s ease-in-out;
+        }
+
+        .custom-offcanvas .offcanvas-header {
+            background: transparent;
+            border-bottom: none !important;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url("https://ugc.production.linktr.ee/92a508fb-a286-4734-b384-c4b17161a1e7_NOVOS-DESTAQUES-IBMS---2-.png?io=true&size=avatar-v3_0") center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+        }
+
+        .hero-content .btn {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+        }
+
+        /* Seção com imagem de fundo */
+        .image-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            /* altura total da tela */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* Imagem de fundo (via <img src>) */
+        .image-section .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* cobre tudo sem distorcer */
+            z-index: 1;
+            filter: brightness(40%) blur(1.5px);
+            /* escuro e levemente fosco */
+        }
+
+        /* Camada extra (caso queira ainda mais escurecido) */
+        .image-section .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 2;
+        }
+
+        /* Conteúdo por cima da imagem */
+        .image-section .content {
+            position: relative;
+            z-index: 3;
+            max-width: 700px;
+            padding: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        /* --- ANIMAÇÃO AO ROLAR --- */
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- SEÇÃO SOBRE --- */
+        #sobre {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        #sobre .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(40%);
+            z-index: 1;
+        }
+
+        #sobre .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+
+        #sobre .sobre-content {
+            position: relative;
+            z-index: 3;
+            max-width: 700px;
+            padding: 30px;
+        }
+
+        #sobre h2 {
+            font-size: 2.8rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        #sobre p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            #sobre h2 {
+                font-size: 2rem;
+            }
+
+            #sobre p {
+                font-size: 1rem;
+            }
+        }
+
+        .image-section.show .content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .image-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .image-section p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* --- SEÇÃO SOBRE COM SOBREPOSIÇÃO --- */
+        .sobre-overlay {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background: transparent;
+        }
+
+        /* Imagem de fundo */
+        .sobre-overlay .bg-sobre {
+            position: fixed;
+            /* Fixa a imagem para o efeito de sobreposição */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(40%);
+            z-index: -2;
+            opacity: 0;
+            transform: scale(1.1);
+            transition: opacity 1.2s ease, transform 1.5s ease;
+        }
+
+        /* Camada escura */
+        .sobre-overlay .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+        }
+
+        /* Conteúdo */
+        .sobre-info {
+            position: relative;
+            z-index: 3;
+            max-width: 750px;
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        /* Texto */
+        .sobre-info h2 {
+            font-size: 2.8rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .sobre-info p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* Fade ao rolar */
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .sobre-info h2 {
+                font-size: 2rem;
+            }
+
+            .sobre-info p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Parallax sutil da imagem de fundo */
+        .bg-sobre {
+            transition: transform 0.2s ease-out, opacity 1.2s ease;
+        }
+
+
+        /* Animação do slider */
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+
+            30% {
+                transform: translateX(0);
+            }
+
+            35% {
+                transform: translateX(-100%);
+            }
+
+            65% {
+                transform: translateX(-100%);
+            }
+
+            70% {
+                transform: translateX(-200%);
+            }
+
+            100% {
+                transform: translateX(-200%);
+            }
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .sobre-nos .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .slider {
+                width: 80% !important;
+                height: 250px !important;
+                margin-bottom: 20px;
+            }
+
+            .texto-sobre {
+                width: 90% !important;
+            }
+        }
+
+        .slides {
+            animation: slide 12s infinite ease-in-out;
+            transition: opacity 0.8s ease;
+        }
+
+        @media (max-width: 768px) {
+            #slider {
+                height: 300px !important;
+            }
+        }
+
+        #carouselExample .carousel-item {
+            transition: transform 1s ease, opacity 1s ease;
+        }
+    </style>
+</head>
+
+<body>
     <!-- Navbar -->
     <nav class="navbar navbar-dark custom-navbar fixed-top">
-      <div class="container-fluid">
-        <!-- LOGO + TEXTO -->
-        <a class="navbar-brand d-flex align-items-center" href="#">
-          <img
-            src="https://ugc.production.linktr.ee/92a508fb-a286-4734-b384-c4b17161a1e7_NOVOS-DESTAQUES-IBMS---2-.png?io=true&size=avatar-v3_0"
-            class="navbar-logo"
-            alt="Logo IBMS"
-          />
-          <span>IBMS</span>
-        </a>
+        <div class="container-fluid">
+            <!-- LOGO + TEXTO -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="https://ugc.production.linktr.ee/92a508fb-a286-4734-b384-c4b17161a1e7_NOVOS-DESTAQUES-IBMS---2-.png?io=true&size=avatar-v3_0"
+                    class="navbar-logo" alt="Logo IBMS" />
+                <span>IBMS</span>
+            </a>
 
-        <!-- Botão do menu (hambúrguer) -->
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasDarkNavbar"
-          aria-controls="offcanvasDarkNavbar"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+            <!-- Botão do menu (hambúrguer) -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <!-- Menu offcanvas -->
-        <!-- Menu offcanvas -->
-        <div
-          class="offcanvas offcanvas-end custom-offcanvas"
-          tabindex="-1"
-          id="offcanvasDarkNavbar"
-          aria-labelledby="offcanvasDarkNavbarLabel"
-        >
-        
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
-            <button
-              type="button"
-              class="btn-close btn-close-white"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-            ></button>
-          </div>
+            <!-- Menu offcanvas -->
+            <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasDarkNavbar"
+                aria-labelledby="offcanvasDarkNavbarLabel">
 
-          <div class="offcanvas-body">
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#inicio"
-                  >Início</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#sobre">Sobre</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#cultos">Cultos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#contato">Contato</a>
-              </li>
-            </ul>
-          </div>
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#inicio">Início</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#sobre">Sobre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#juve">LEDS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#cultos">Cultos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contato">Contato</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
     </nav>
 
     <!-- Seção Início (Hero) -->
     <section id="inicio" class="hero">
-      <div class="hero-content">
-        <h1>Igreja Batista Monte Sinai</h1>
-        <p>Uma família de fé, amor e esperança em Cristo.</p>
-        <a href="#sobre" class="btn btn-light">Conheça mais</a>
-      </div>
+        <div class="hero-content">
+            <h1>Igreja Batista Monte Sinai</h1>
+            <p>Uma família de fé, amor e esperança em Cristo.</p>
+        </div>
     </section>
 
-    <!-- Seção com imagem de fundo (usando <img src>) -->
-    <section id="sobre" class="image-section">
-      <!-- Imagem de fundo -->
-      <img src="img/img2.JPG" alt="Imagem de fundo" class="bg-image" />
+    <!-- Seção SOBRE NÓS -->
+    <section id="sobre" class="sobre-overlay">
+        <img src="img/img1.JPG" alt="Imagem de fundo" class="bg-sobre" />
+        <div class="overlay"></div>
 
-      <!-- Camada escura -->
-      <div class="overlay"></div>
+        <section class="sobre-nos position-relative text-white d-flex align-items-center justify-content-center" style="
+    position: relative;
+    min-height: 100vh;
+    background: url('img/fundo-sobre.jpg') center/cover no-repeat fixed;
+    overflow: hidden;
+  ">
+            <!-- Camada escura para leitura -->
+            <div class="overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.5);">
+            </div>
 
-      <!-- Conteúdo por cima -->
-      <div class="content">
-        <h2>Sobre Nós</h2>
-        <p>
-          A Igreja Batista Monte Sinai é uma família de fé, amor e esperança.
-          Servimos a Deus e à comunidade com alegria e dedicação.
-        </p>
-        <a href="#contato" class="btn btn-light mt-3">Fale Conosco</a>
-      </div>
+            <div class="container position-relative d-flex flex-wrap align-items-center justify-content-between py-5"
+                style="z-index: 2;">
+                <!-- Slider -->
+                <div id="slider" class="slider position-relative" style="
+    width: 40%;
+    max-width: 450px;
+    height: 450px;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+">
+                    <div class="slides d-flex" style="
+        width: 100%;
+        height: 100%;
+    ">
+                        <img src="img/img1.JPG" class="w-100" style="object-fit: cover; filter: brightness(0.9);" />
+                    </div>
+                </div>
+
+
+                <!-- Texto -->
+                <div class="texto-sobre mt-4 mt-md-0" style="width: 50%; min-width: 280px;">
+                    <h2 class="fw-bold mb-3" style="font-size: 2rem;">Sobre Nós</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.6;">
+                        Somos uma comunidade comprometida com a fé, o amor e o serviço ao
+                        próximo. Nossa missão é compartilhar a palavra de Deus, acolher todos
+                        os corações e fortalecer os laços de união entre as pessoas.
+                    </p>
+                    <a href="#nossa" class="btn btn-light">Nossa Missão</a>
+                </div>
+            </div>
+        </section>
     </section>
 
-    <!-- Carrossel à esquerda -->
-    <div class="carousel-container">
-      <div
-        id="carouselExampleIndicators"
-        class="carousel slide h-100"
-        data-bs-ride="carousel"
-      >
-        <div class="carousel-indicators">
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="0"
-            class="active"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="1"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="2"
-          ></button>
+    <!-- Seção Nossa Missão -->
+    <section id="nossa"
+        class="nossa-missao position-relative text-white d-flex align-items-center justify-content-center" style="
+        position: relative;
+        min-height: 100vh;
+        background: linear-gradient(to bottom, #3b6d77, #ffffff);
+        overflow: hidden;
+        padding: 60px 0;
+    ">
+
+        <div class="container position-relative d-flex flex-wrap align-items-center justify-content-between py-5"
+            style="z-index: 2;">
+
+            <!-- Texto à esquerda -->
+            <div class="texto-sobre mb-4 mb-md-0" style="width: 50%; min-width: 280px;">
+                <h2 class="fw-bold mb-3" style="font-size: 2rem;">Nossa Missão</h2>
+                <p style="font-size: 1.1rem; line-height: 1.6;">
+                    Somos uma igreja que valoriza a família, a comunhão e a união.
+                    Acreditamos que a fé se fortalece quando caminhamos juntos, apoiando uns aos outros em amor e
+                    verdade.
+                    Nosso compromisso é viver e anunciar o Evangelho de Cristo de forma fiel, sem alterá-lo ou adaptá-lo
+                    ao mundo,
+                    mas permitindo que ele transforme nossas vidas.
+                    <br><br>
+                    Na <strong>Igreja Batista Monte Sinai</strong>, cada encontro é uma oportunidade de crescer
+                    espiritualmente,
+                    fortalecer os laços familiares e experimentar a presença real de Deus em comunidade.
+                </p>
+            </div>
+
+            <!-- Carrossel à direita -->
+            <div id="slider2" class="slider position-relative" style="
+            width: 40%;
+            max-width: 450px;
+            height: 450px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        ">
+                <div class="slides d-flex" style="
+                width: 300%;
+                height: 100%;
+                animation: slide 12s infinite;
+            ">
+                    <img src="img/.JPG" class="w-100" style="object-fit: cover; filter: brightness(0.9);" />
+                    <img src="img/.JPG" class="w-100" style="object-fit: cover; filter: brightness(0.9);" />
+                    <img src="img/.JPG" class="w-100" style="object-fit: cover; filter: brightness(0.9);" />
+                </div>
+            </div>
+
         </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="img/img1.JPG" class="d-block w-100" alt="Evento 2" />
-          </div>
-          <div class="carousel-item">
-            <img
-              src="https://via.placeholder.com/900x400?text=Evento+2"
-              class="d-block w-100"
-              alt="Evento 2"
-            />
-          </div>
-          <div class="carousel-item">
-            <img
-              src="https://via.placeholder.com/900x400?text=Evento+3"
-              class="d-block w-100"
-              alt="Evento 3"
-            />
-          </div>
-        </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon"></span>
-        </button>
-      </div>
-    </div>
+    </section>
+
+
+
+    <!-- SEÇÃO JUVENTUDE LEDS -->
+    <section id="juve" class="position-relative" style="min-height: 100vh; overflow: hidden;">
+        <div id="carouselExample" class="carousel slide h-100" data-bs-ride="carousel" data-bs-interval="3000">
+            <div class="carousel-inner h-100">
+                <div class="carousel-item active h-100">
+                    <img src="img/jv1.JPG" class="d-block w-100 h-100"
+                        style="object-fit: cover; filter: brightness(0.6);" alt="Juventude 1">
+                </div>
+                <div class="carousel-item h-100">
+                    <img src="img/jvan2.jpg" class="d-block w-100 h-100"
+                        style="object-fit: cover; filter: brightness(0.6);" alt="Juventude 2">
+                </div>
+            </div>
+
+            <!-- Controles -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Próximo</span>
+            </button>
+
+            <!-- Overlay escuro -->
+            <div class="position-absolute top-0 start-0 w-100 h-100"
+                style="background: rgba(0, 0, 0, 0.4); z-index: 1; pointer-events: none;"></div>
+
+            <div class="position-absolute top-50 start-50 translate-middle text-center text-white"
+                style="z-index: 2; pointer-events: none;">
+
+
+                <!-- Texto central -->
+                <div class="text-center text-white mt-3" style="z-index: 2; position: relative;">
+                    <h2 class="fw-bold display-4" style="text-shadow: 2px 2px 10px rgba(0,0,0,0.7);">
+                        Juventude LEDS
+                    </h2>
+                    <p class="lead mt-2"
+                        style="max-width: 600px; margin: 0 auto; text-shadow: 1px 1px 8px rgba(0,0,0,0.6);">
+                    </p>
+                </div>
+            </div>
+    </section>
+
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-      let lastScrollTop = 0;
-      const navbar = document.querySelector(".navbar");
-      const offcanvas = document.querySelector(".offcanvas");
+        let lastScrollTop = 0;
+        const navbar = document.querySelector(".navbar");
+        const offcanvas = document.querySelector(".offcanvas");
 
-      window.addEventListener("scroll", function () {
-        const scrollTop =
-          window.pageYOffset || document.documentElement.scrollTop;
-        const offcanvasIsOpen = offcanvas.classList.contains("show");
+        window.addEventListener("scroll", function () {
+            const scrollTop =
+                window.pageYOffset || document.documentElement.scrollTop;
+            const offcanvasIsOpen = offcanvas.classList.contains("show");
 
-        if (!offcanvasIsOpen) {
-          if (scrollTop > lastScrollTop && scrollTop > 100) {
-            navbar.style.top = "-80px"; // some ao rolar para baixo
-          } else {
-            navbar.style.top = "0"; // reaparece ao rolar para cima
-          }
+            if (!offcanvasIsOpen) {
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    navbar.style.top = "-80px"; // some ao rolar para baixo
+                } else {
+                    navbar.style.top = "0"; // reaparece ao rolar para cima
+                }
+            }
+
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        offcanvas.addEventListener("show.bs.offcanvas", () => {
+            navbar.style.top = "0";
+        });
+
+        window.addEventListener("scroll", () => {
+            const section = document.querySelector(".image-section");
+            const sectionTop = section.getBoundingClientRect().top;
+            if (sectionTop < window.innerHeight - 150) {
+                section.classList.add("show");
+            }
+        });
+
+        // Revelar elementos ao rolar
+        const fadeElements = document.querySelectorAll('.scroll-fade');
+
+        function revealOnScroll() {
+            fadeElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    el.classList.add('visible');
+                }
+            });
         }
 
-        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-      });
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // chama uma vez ao carregar
 
-      offcanvas.addEventListener("show.bs.offcanvas", () => {
-        navbar.style.top = "0";
-      });
+        const fadeElement = document.querySelectorAll('.scroll-fade');
+        const bgSobre = document.querySelector('.bg-sobre');
+        const overlay = document.querySelector('.sobre-overlay .overlay');
+
+        function handleScroll() {
+            const sobre = document.querySelector('#sobre');
+            const rect = sobre.getBoundingClientRect();
+
+            // Quando a seção começa a aparecer na tela
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                bgSobre.style.opacity = 1;
+                bgSobre.style.transform = 'scale(1)';
+                overlay.style.opacity = 1;
+            } else {
+                bgSobre.style.opacity = 0;
+                bgSobre.style.transform = 'scale(1.1)';
+                overlay.style.opacity = 0;
+            }
+
+            // Aparece o texto
+            fadeElements.forEach(el => {
+                const elRect = el.getBoundingClientRect();
+                if (elRect.top < window.innerHeight - 100) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
+
+        function handleParallax() {
+            const sobre = document.querySelector('#sobre');
+            const rect = sobre.getBoundingClientRect();
+
+            if (rect.bottom > 0 && rect.top < window.innerHeight) {
+                // Calcula a posição relativa da seção em % da altura da janela
+                const scrollPercent = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+
+                // Move a imagem levemente para cima (máx: 30px)
+                bgSobre.style.transform = `scale(1) translateY(${scrollPercent * -30}px)`;
+            }
+        }
+
+        window.addEventListener('scroll', handleParallax);
+        handleParallax();
+
     </script>
-  </body>
+</body>
+
 </html>
