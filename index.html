@@ -381,6 +381,73 @@
         #carouselExample .carousel-item {
             transition: transform 1s ease, opacity 1s ease;
         }
+
+
+        /* CSS para os cards da Juventude LEDS */
+        .leds-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .leds-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .leds-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .leds-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .leds-card:hover .leds-card-overlay {
+            opacity: 1;
+        }
+
+
+        /* Fade-in + slide-up para os cards LEDS */
+        .scroll-fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hover mais elegante: zoom e sombra */
+        .leds-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .leds-card img {
+            transition: transform 0.6s ease;
+        }
+
+        .leds-card:hover img {
+            transform: scale(1.15);
+        }
     </style>
 </head>
 
@@ -591,7 +658,48 @@
             </div>
     </section>
 
+    <section id="juventude" class="position-relative text-white py-5"
+        style="background: linear-gradient(to bottom, #1c2a33, #3b6d77);">
+        <div class="container text-center">
+            <h2 class="fw-bold display-4 mb-4">Juventude LEDS</h2>
+            <p class="lead mb-5" style="max-width:700px; margin:0 auto;">
+                Um espaço para jovens crescerem na fé, fortalecer amizades e servir à comunidade de forma divertida e
+                inspiradora.
+            </p>
 
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="leds-card scroll-fade-up">
+                        <img src="img/jv1.JPG" alt="Encontros" />
+                        <div class="leds-card-overlay">
+                            <h3>Encontros Semanais</h3>
+                            <p>Momentos de união, louvor e aprendizado bíblico.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="leds-card scroll-fade-up">
+                        <img src="img/jv2.JPG" alt="Serviço" />
+                        <div class="leds-card-overlay">
+                            <h3>Serviço e Comunhão</h3>
+                            <p>Projetos e ações sociais para transformar vidas.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="leds-card scroll-fade-up">
+                        <img src="img/jv3.JPG" alt="Adoração" />
+                        <div class="leds-card-overlay">
+                            <h3>Adoração Jovem</h3>
+                            <p>Louvor e momentos de conexão com Deus.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#contato" class="btn btn-light btn-lg mt-5" style="border-radius:30px;">Participar</a>
+        </div>
+    </section>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -690,6 +798,22 @@
 
         window.addEventListener('scroll', handleParallax);
         handleParallax();
+
+        // Revelar cards LEDS ao rolar
+        const ledsCards = document.querySelectorAll('.leds-card.scroll-fade-up');
+
+        function revealLedsCards() {
+            ledsCards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    card.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealLedsCards);
+        revealLedsCards(); // chama uma vez ao carregar
+
 
     </script>
 </body>
