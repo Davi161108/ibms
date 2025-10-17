@@ -640,56 +640,92 @@
         </section>
     </section>
 
-    <!-- Seção Nossa Missão -->
-    <section id="nossa"
-        class="nossa-missao position-relative text-white d-flex align-items-center justify-content-center" style="
-        position: relative;
-        min-height: 100vh;
-        background: linear-gradient(to bottom, #3b6d77, #ffffff);
-        overflow: hidden;
-        padding: 60px 0;
-    ">
+    <!-- Seção Pastor com imagem e texto trocando juntos -->
+    <section id="past" class="position-relative text-white d-flex align-items-center justify-content-center" style="
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #1c2a33, #3b6d77);
+    overflow: hidden;
+">
+        <div id=pastor class="container position-relative py-5" style="z-index: 2;">
+            <h2 class="text-center fw-bold mb-5 display-4">Nosso Pastor</h2>
+            <div id="pastorCarousel" class="carousel slide d-flex align-items-center justify-content-center"
+                data-bs-ride="carousel">
+                <div class="carousel-inner d-flex align-items-center" style="width: 100%; max-width: 1000px;">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <img src="img/jv1.JPG" class="w-100 rounded shadow"
+                                    alt="Pastor João - início de ministério" style="height: 400px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-6">
+                                <h3 class="fw-bold mb-3 mt-4 mt-md-0">Chamado Ministerial</h3>
+                                <p style="font-size: 1.1rem; line-height: 1.6;">
+                                    O Pastor Silvio Lâmego é um homem dedicado à obra de Deus há mais de 30 anos, com
+                                    uma trajetória marcada por fé, compromisso e amor ao próximo. <br>
+                                    Casado e pai de duas filhas, ele conduz seu ministério com sabedoria, sensibilidade
+                                    e uma paixão
+                                    inabalável por ensinar a Palavra.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-item">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <img src="img/pastor2.jpg" class="w-100 rounded shadow" alt="Pastor João ministrando"
+                                    style="height: 400px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-6">
+                                <h3 class="fw-bold mb-3 mt-4 mt-md-0">Ministério Atual</h3>
+                                <p style="font-size: 1.1rem; line-height: 1.6;">
+                                    Com uma visão clara de crescimento e discipulado, ele sonha com uma igreja ainda
+                                    mais forte, acolhedora e apaixonada pela presença de Deus.
+                                    Somos uma igreja que valoriza a família, a comunhão e a união.<br>
+                                    Acreditamos que a fé se fortalece quando caminhamos juntos, apoiando uns aos outros
+                                    em amor e verdade.
+                                    Nosso compromisso é viver e anunciar o Evangelho de Cristo de forma fiel, sem
+                                    alterá-lo ou adaptá-lo
+                                    ao mundo,
+                                    mas permitindo que ele transforme nossas vidas.
+                                    <br><br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-item">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <img src="img/pastor3.jpg" class="w-100 rounded shadow" alt="Visão pastoral"
+                                    style="height: 400px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-6">
+                                <h3 class="fw-bold mb-3 mt-4 mt-md-0">Visão e Futuro</h3>
+                                <p style="font-size: 1.1rem; line-height: 1.6;">
+                                    Nossa igreja está de portas e corações abertos para receber você e sua família. Se
+                                    você busca um lugar de fé, comunhão e crescimento espiritual, será uma alegria tê-lo
+                                    conosco em um de nossos cultos.
 
-        <div class="container position-relative d-flex flex-wrap align-items-center justify-content-between py-5"
-            style="z-index: 2;">
-
-            <!-- Texto à esquerda -->
-            <div class="texto-sobre mb-4 mb-md-0" style="width: 50%; min-width: 280px;">
-                <h2 class="fw-bold mb-3" style="font-size: 2rem;">Nossa Missão</h2>
-                <p style="font-size: 1.1rem; line-height: 1.6;">
-                    Somos uma igreja que valoriza a família, a comunhão e a união.
-                    Acreditamos que a fé se fortalece quando caminhamos juntos, apoiando uns aos outros em amor e
-                    verdade.
-                    Nosso compromisso é viver e anunciar o Evangelho de Cristo de forma fiel, sem alterá-lo ou adaptá-lo
-                    ao mundo,
-                    mas permitindo que ele transforme nossas vidas.
-                    <br><br>
-                    Na <strong>Igreja Batista Monte Sinai</strong>, cada encontro é uma oportunidade de crescer
-                    espiritualmente,
-                    fortalecer os laços familiares e experimentar a presença real de Deus em comunidade.
-                </p>
-            </div>
-
-            <!-- Carrossel à direita -->
-            <div id="slider2" class="slider position-relative" style="
-            width: 40%;
-            max-width: 450px;
-            height: 450px;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-        ">
-                <div class="slides d-flex" style="
-                width: 300%;
-                height: 100%;
-                animation: slide 12s infinite;
-            ">
-                    <img src="img/.JPG" class="w-100" style="object-fit: cover; filter: brightness(0.9);" />
-                    <img src="img/.JPG" class="w-100" style="object-fit: cover; filter: brightness(0.9);" />
-                    <img src="img/.JPG" class="w-100" style="object-fit: cover; filter: brightness(0.9);" />
+                                    Sinta-se à vontade para nos visitar e, se desejar, conversar pessoalmente com o
+                                    nosso pastor. Ele está sempre disponível para ouvir, aconselhar e orar com você.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
+                <!-- Controles -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#pastorCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#pastorCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
+            </div>
         </div>
     </section>
 
@@ -802,96 +838,6 @@
 
             <a href="#contato" class="btn btn-outline-light mt-5 px-4 py-2" style="border-radius: 30px;">Quero
                 Participar</a>
-        </div>
-    </section>
-
-
-    <!-- Seção Pastor com imagem e texto trocando juntos -->
-    <section id="past" class="position-relative text-white d-flex align-items-center justify-content-center" style="
-    min-height: 100vh;
-    background: linear-gradient(to bottom, #1c2a33, #3b6d77);
-    overflow: hidden;
-">
-        <div id=pastor class="container position-relative py-5" style="z-index: 2;">
-            <h2 class="text-center fw-bold mb-5 display-4">Nosso Pastor</h2>
-            <div id="pastorCarousel" class="carousel slide d-flex align-items-center justify-content-center"
-                data-bs-ride="carousel">
-                <div class="carousel-inner d-flex align-items-center" style="width: 100%; max-width: 1000px;">
-                    <!-- Slide 1 -->
-                    <div class="carousel-item active">
-                        <div class="row align-items-center">
-                            <div class="col-md-6">
-                                <img src="img/jv1.JPG" class="w-100 rounded shadow"
-                                    alt="Pastor João - início de ministério" style="height: 400px; object-fit: cover;">
-                            </div>
-                            <div class="col-md-6">
-                                <h3 class="fw-bold mb-3 mt-4 mt-md-0">Chamado Ministerial</h3>
-                                <p style="font-size: 1.1rem; line-height: 1.6;">
-                                    O Pastor Silvio Lâmego é um homem dedicado à obra de Deus há mais de 30 anos, com
-                                    uma trajetória marcada por fé, compromisso e amor ao próximo. <br>
-                                    Casado e pai de duas filhas, ele conduz seu ministério com sabedoria, sensibilidade
-                                    e uma paixão
-                                    inabalável por ensinar a Palavra.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 2 -->
-                    <div class="carousel-item">
-                        <div class="row align-items-center">
-                            <div class="col-md-6">
-                                <img src="img/pastor2.jpg" class="w-100 rounded shadow" alt="Pastor João ministrando"
-                                    style="height: 400px; object-fit: cover;">
-                            </div>
-                            <div class="col-md-6">
-                                <h3 class="fw-bold mb-3 mt-4 mt-md-0">Ministério Atual</h3>
-                                <p style="font-size: 1.1rem; line-height: 1.6;">
-                                    Com uma visão clara de crescimento e discipulado, ele sonha com uma igreja ainda
-                                    mais forte, acolhedora e apaixonada pela presença de Deus.
-                                    Somos uma igreja que valoriza a família, a comunhão e a união.<br>
-                                    Acreditamos que a fé se fortalece quando caminhamos juntos, apoiando uns aos outros
-                                    em amor e verdade.
-                                    Nosso compromisso é viver e anunciar o Evangelho de Cristo de forma fiel, sem
-                                    alterá-lo ou adaptá-lo
-                                    ao mundo,
-                                    mas permitindo que ele transforme nossas vidas.
-                                    <br><br>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 3 -->
-                    <div class="carousel-item">
-                        <div class="row align-items-center">
-                            <div class="col-md-6">
-                                <img src="img/pastor3.jpg" class="w-100 rounded shadow" alt="Visão pastoral"
-                                    style="height: 400px; object-fit: cover;">
-                            </div>
-                            <div class="col-md-6">
-                                <h3 class="fw-bold mb-3 mt-4 mt-md-0">Visão e Futuro</h3>
-                                <p style="font-size: 1.1rem; line-height: 1.6;">
-                                    Nossa igreja está de portas e corações abertos para receber você e sua família. Se
-                                    você busca um lugar de fé, comunhão e crescimento espiritual, será uma alegria tê-lo
-                                    conosco em um de nossos cultos.
-
-                                    Sinta-se à vontade para nos visitar e, se desejar, conversar pessoalmente com o
-                                    nosso pastor. Ele está sempre disponível para ouvir, aconselhar e orar com você.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Controles -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#pastorCarousel"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#pastorCarousel"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                </button>
-            </div>
         </div>
     </section>
 
