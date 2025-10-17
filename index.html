@@ -529,6 +529,40 @@
             scroll-margin-top: 100px;
             /* Ajuste esse valor para a altura da sua navbar */
         }
+
+        .botao-seta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 30px;
+            padding: 8px 18px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .botao-seta i {
+            font-size: 1.2rem;
+            /* seta menor */
+            transition: transform 0.3s ease;
+        }
+
+        /* Efeito de hover */
+        .botao-seta:hover {
+            background-color: #fff;
+            color: #000;
+            transform: translateY(2px);
+        }
+
+        .botao-seta:hover i {
+            transform: translateY(3px);
+            /* seta desce levemente */
+        }
     </style>
 </head>
 
@@ -636,7 +670,16 @@
                         próximo. Nossa missão é compartilhar a palavra de Deus, acolher todos
                         os corações e fortalecer os laços de união entre as pessoas.
                     </p>
-                    <a href="#nossa" class="btn btn-light">Nossa Missão</a>
+
+                    <!-- Seta animada -->
+                    <a href="#pastor" class="botao-seta">
+                        <i class="fas fa-chevron-down"></i>
+                        <span>Veja mais</span>
+                    </a>
+
+                    <!-- Adicionando o link para o Font Awesome (ícones) -->
+                    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+                        rel="stylesheet">
                 </div>
             </div>
         </section>
@@ -989,6 +1032,9 @@
             });
         });
 
+        document.getElementById('seta').addEventListener('click', function () {
+            document.querySelector('#nossa').scrollIntoView({ behavior: 'smooth' });
+        });
     </script>
 </body>
 
