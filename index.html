@@ -8,7 +8,13 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background: linear-gradient(to bottom, #3b6d77 0%, #6fa3ad 60%, #d9e6e8 100%);
             min-height: 100vh;
@@ -383,6 +389,14 @@
         }
 
 
+        #juve.darken {
+            background-blend-mode: multiply;
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: background-color 0.8s ease;
+        }
+
+
+
         /* CSS para os cards da Juventude LEDS */
         .leds-card {
             position: relative;
@@ -447,6 +461,73 @@
 
         .leds-card:hover img {
             transform: scale(1.15);
+        }
+
+        .culto-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            color: #ffffff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .culto-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
+        }
+
+        .scroll-fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-down:hover .hover-text {
+            opacity: 1;
+        }
+
+        .scroll-down i {
+            animation: bounce 1.8s infinite;
+        }
+
+        .scroll-down {
+            transition: all 0.3s ease;
+        }
+
+        .scroll-down .hover-text {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-down:hover .hover-text {
+            opacity: 1;
+            margin-left: 8px;
+        }
+
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(6px);
+            }
+        }
+
+        #pastor {
+            scroll-margin-top: 100px;
+            /* Ajuste esse valor para a altura da sua navbar */
         }
     </style>
 </head>
@@ -613,49 +694,25 @@
     </section>
 
 
+    <!-- SEÇÃO JUVENTUDE LEDS (estilo igual ao "Sobre Nós") -->
+    <section id="juve" class="sobre-nos position-relative text-white d-flex align-items-center justify-content-center"
+        style="
+    position: relative;
+    min-height: 100vh;
+    background: url('img/jvan2.jpg') center/cover no-repeat fixed;
+    overflow: hidden;
+">
+        <!-- Camada escura para facilitar a leitura -->
+        <div class="overlay position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.5);"></div>
 
-    <!-- SEÇÃO JUVENTUDE LEDS -->
-    <section id="juve" class="position-relative" style="min-height: 100vh; overflow: hidden;">
-        <div id="carouselExample" class="carousel slide h-100" data-bs-ride="carousel" data-bs-interval="3000">
-            <div class="carousel-inner h-100">
-                <div class="carousel-item active h-100">
-                    <img src="img/jv1.JPG" class="d-block w-100 h-100"
-                        style="object-fit: cover; filter: brightness(0.6);" alt="Juventude 1">
-                </div>
-                <div class="carousel-item h-100">
-                    <img src="img/jvan2.jpg" class="d-block w-100 h-100"
-                        style="object-fit: cover; filter: brightness(0.6);" alt="Juventude 2">
-                </div>
-            </div>
-
-            <!-- Controles -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Anterior</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Próximo</span>
-            </button>
-
-            <!-- Overlay escuro -->
-            <div class="position-absolute top-0 start-0 w-100 h-100"
-                style="background: rgba(0, 0, 0, 0.4); z-index: 1; pointer-events: none;"></div>
-
-            <div class="position-absolute top-50 start-50 translate-middle text-center text-white"
-                style="z-index: 2; pointer-events: none;">
-
-
-                <!-- Texto central -->
-                <div class="text-center text-white mt-3" style="z-index: 2; position: relative;">
-                    <h2 class="fw-bold display-4" style="text-shadow: 2px 2px 10px rgba(0,0,0,0.7);">
-                        Juventude LEDS
-                    </h2>
-                    <p class="lead mt-2"
-                        style="max-width: 600px; margin: 0 auto; text-shadow: 1px 1px 8px rgba(0,0,0,0.6);">
-                    </p>
-                </div>
-            </div>
+        <!-- Conteúdo -->
+        <div class="container position-relative text-center" style="z-index: 2;">
+            <h2 class="fw-bold display-4 mb-4">Juventude LEDS</h2>
+            <p class="lead" style="max-width: 700px; margin: 0 auto;">
+                Um espaço para jovens crescerem na fé, fortalecer amizades e servir à comunidade
+                de forma divertida e inspiradora.
+            </p>
+        </div>
     </section>
 
     <section id="juventude" class="position-relative text-white py-5"
@@ -696,10 +753,148 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <a href="#contato" class="btn btn-light btn-lg mt-5" style="border-radius:30px;">Participar</a>
+        <div id=cultos class="container text-center text-white" style="margin-top: 5%;">
+            <h2 class="display-4 fw-bold mb-5 scroll-fade-up">⛪ Horários dos Cultos</h2>
+            <p class="lead mb-5 scroll-fade-up" style="max-width: 750px; margin: auto;">
+                Junte-se a nós em momentos de adoração, comunhão e crescimento espiritual. Aqui, sua presença faz a
+                diferença.
+            </p>
+
+            <div class="row g-4 justify-content-center">
+
+                <!-- CARD 1 -->
+                <div class="col-md-5 col-lg-4 scroll-fade-up">
+                    <div class="culto-card p-4 rounded-4 text-start h-100">
+                        <h4 class="mb-3"><i class="bi bi-calendar-event me-2"></i> Quarta-feira</h4>
+                        <p class="mb-0">Culto da Palavra às <strong>19h30</strong></p>
+                    </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="col-md-5 col-lg-4 scroll-fade-up">
+                    <div class="culto-card p-4 rounded-4 text-start h-100">
+                        <h4 class="mb-3"><i class="bi bi-sunrise-fill me-2"></i> Domingo de Manhã</h4>
+                        <p class="mb-1">Escola Bíblica Dominical às <strong>08h30</strong></p>
+                        <p class="mb-0">Culto às <strong>09h30</strong></p>
+                    </div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="col-md-5 col-lg-4 scroll-fade-up">
+                    <div class="culto-card p-4 rounded-4 text-start h-100">
+                        <h4 class="mb-3"><i class="bi bi-moon-stars-fill me-2"></i> Domingo à Noite</h4>
+                        <p class="mb-0">Culto de Celebração às <strong>19h00</strong></p>
+                    </div>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="col-md-5 col-lg-4 scroll-fade-up">
+                    <div class="culto-card p-4 rounded-4 text-start h-100">
+                        <h4 class="mb-3"><i class="bi bi-pray me-2"></i> Semana de Oração</h4>
+                        <p class="mb-1">Todo início de mês</p>
+                        <p class="mb-0">Das <strong>18h00</strong> às <strong>19h00</strong></p>
+                    </div>
+                </div>
+
+            </div>
+
+            <a href="#contato" class="btn btn-outline-light mt-5 px-4 py-2" style="border-radius: 30px;">Quero
+                Participar</a>
         </div>
     </section>
+
+
+    <!-- Seção Pastor com imagem e texto trocando juntos -->
+    <section id="past" class="position-relative text-white d-flex align-items-center justify-content-center" style="
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #1c2a33, #3b6d77);
+    overflow: hidden;
+">
+        <div id=pastor class="container position-relative py-5" style="z-index: 2;">
+            <h2 class="text-center fw-bold mb-5 display-4">Nosso Pastor</h2>
+            <div id="pastorCarousel" class="carousel slide d-flex align-items-center justify-content-center"
+                data-bs-ride="carousel">
+                <div class="carousel-inner d-flex align-items-center" style="width: 100%; max-width: 1000px;">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <img src="img/jv1.JPG" class="w-100 rounded shadow"
+                                    alt="Pastor João - início de ministério" style="height: 400px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-6">
+                                <h3 class="fw-bold mb-3 mt-4 mt-md-0">Chamado Ministerial</h3>
+                                <p style="font-size: 1.1rem; line-height: 1.6;">
+                                    O Pastor Silvio Lâmego é um homem dedicado à obra de Deus há mais de 30 anos, com
+                                    uma trajetória marcada por fé, compromisso e amor ao próximo. <br>
+                                    Casado e pai de duas filhas, ele conduz seu ministério com sabedoria, sensibilidade
+                                    e uma paixão
+                                    inabalável por ensinar a Palavra.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-item">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <img src="img/pastor2.jpg" class="w-100 rounded shadow" alt="Pastor João ministrando"
+                                    style="height: 400px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-6">
+                                <h3 class="fw-bold mb-3 mt-4 mt-md-0">Ministério Atual</h3>
+                                <p style="font-size: 1.1rem; line-height: 1.6;">
+                                    Com uma visão clara de crescimento e discipulado, ele sonha com uma igreja ainda
+                                    mais forte, acolhedora e apaixonada pela presença de Deus.
+                                    Somos uma igreja que valoriza a família, a comunhão e a união.<br>
+                                    Acreditamos que a fé se fortalece quando caminhamos juntos, apoiando uns aos outros
+                                    em amor e verdade.
+                                    Nosso compromisso é viver e anunciar o Evangelho de Cristo de forma fiel, sem
+                                    alterá-lo ou adaptá-lo
+                                    ao mundo,
+                                    mas permitindo que ele transforme nossas vidas.
+                                    <br><br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-item">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <img src="img/pastor3.jpg" class="w-100 rounded shadow" alt="Visão pastoral"
+                                    style="height: 400px; object-fit: cover;">
+                            </div>
+                            <div class="col-md-6">
+                                <h3 class="fw-bold mb-3 mt-4 mt-md-0">Visão e Futuro</h3>
+                                <p style="font-size: 1.1rem; line-height: 1.6;">
+                                    Nossa igreja está de portas e corações abertos para receber você e sua família. Se
+                                    você busca um lugar de fé, comunhão e crescimento espiritual, será uma alegria tê-lo
+                                    conosco em um de nossos cultos.
+
+                                    Sinta-se à vontade para nos visitar e, se desejar, conversar pessoalmente com o
+                                    nosso pastor. Ele está sempre disponível para ouvir, aconselhar e orar com você.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controles -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#pastorCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#pastorCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -709,10 +904,10 @@
         const navbar = document.querySelector(".navbar");
         const offcanvas = document.querySelector(".offcanvas");
 
-        window.addEventListener("scroll", function () {
-            const scrollTop =
-                window.pageYOffset || document.documentElement.scrollTop;
-            const offcanvasIsOpen = offcanvas.classList.contains("show");
+        // Controla esconder/reaparecer navbar ao rolar
+        window.addEventListener("scroll", () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const offcanvasIsOpen = offcanvas?.classList.contains("show");
 
             if (!offcanvasIsOpen) {
                 if (scrollTop > lastScrollTop && scrollTop > 100) {
@@ -725,21 +920,22 @@
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         });
 
-        offcanvas.addEventListener("show.bs.offcanvas", () => {
+        offcanvas?.addEventListener("show.bs.offcanvas", () => {
             navbar.style.top = "0";
         });
 
+        // Revelar seção image-section
+        const imageSection = document.querySelector(".image-section");
         window.addEventListener("scroll", () => {
-            const section = document.querySelector(".image-section");
-            const sectionTop = section.getBoundingClientRect().top;
+            if (!imageSection) return;
+            const sectionTop = imageSection.getBoundingClientRect().top;
             if (sectionTop < window.innerHeight - 150) {
-                section.classList.add("show");
+                imageSection.classList.add("show");
             }
         });
 
-        // Revelar elementos ao rolar
+        // Revelar elementos com scroll-fade
         const fadeElements = document.querySelectorAll('.scroll-fade');
-
         function revealOnScroll() {
             fadeElements.forEach(el => {
                 const rect = el.getBoundingClientRect();
@@ -748,19 +944,19 @@
                 }
             });
         }
-
         window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll(); // chama uma vez ao carregar
+        revealOnScroll(); // ao carregar
 
-        const fadeElement = document.querySelectorAll('.scroll-fade');
+        // bgSobre e overlay para efeito na seção #sobre
         const bgSobre = document.querySelector('.bg-sobre');
         const overlay = document.querySelector('.sobre-overlay .overlay');
 
         function handleScroll() {
             const sobre = document.querySelector('#sobre');
+            if (!sobre || !bgSobre || !overlay) return;
+
             const rect = sobre.getBoundingClientRect();
 
-            // Quando a seção começa a aparecer na tela
             if (rect.top < window.innerHeight && rect.bottom > 0) {
                 bgSobre.style.opacity = 1;
                 bgSobre.style.transform = 'scale(1)';
@@ -770,38 +966,27 @@
                 bgSobre.style.transform = 'scale(1.1)';
                 overlay.style.opacity = 0;
             }
-
-            // Aparece o texto
-            fadeElements.forEach(el => {
-                const elRect = el.getBoundingClientRect();
-                if (elRect.top < window.innerHeight - 100) {
-                    el.classList.add('visible');
-                }
-            });
         }
-
         window.addEventListener('scroll', handleScroll);
         handleScroll();
 
+        // Parallax na seção #sobre
         function handleParallax() {
             const sobre = document.querySelector('#sobre');
+            if (!sobre || !bgSobre) return;
+
             const rect = sobre.getBoundingClientRect();
 
             if (rect.bottom > 0 && rect.top < window.innerHeight) {
-                // Calcula a posição relativa da seção em % da altura da janela
                 const scrollPercent = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-
-                // Move a imagem levemente para cima (máx: 30px)
                 bgSobre.style.transform = `scale(1) translateY(${scrollPercent * -30}px)`;
             }
         }
-
         window.addEventListener('scroll', handleParallax);
         handleParallax();
 
-        // Revelar cards LEDS ao rolar
+        // Revelar cards LEDS (scroll-fade-up)
         const ledsCards = document.querySelectorAll('.leds-card.scroll-fade-up');
-
         function revealLedsCards() {
             ledsCards.forEach(card => {
                 const rect = card.getBoundingClientRect();
@@ -810,10 +995,53 @@
                 }
             });
         }
-
         window.addEventListener('scroll', revealLedsCards);
-        revealLedsCards(); // chama uma vez ao carregar
+        revealLedsCards();
 
+        // Revelar todos elementos scroll-fade-up
+        const scrollUpElements = document.querySelectorAll('.scroll-fade-up');
+        function revealUp() {
+            scrollUpElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealUp);
+        revealUp();
+
+        // Escurecer imagem de fundo seção LEDS ao rolar
+        function handleLedsOverlay() {
+            const ledsSection = document.getElementById('juve');
+            const overlay = document.getElementById('leds-overlay');
+            if (!ledsSection || !overlay) return;
+
+            const rect = ledsSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                overlay.style.background = 'rgba(0, 0, 0, 0.45)';
+            } else {
+                overlay.style.background = 'rgba(0, 0, 0, 0)';
+            }
+        }
+        window.addEventListener('scroll', handleLedsOverlay);
+        window.addEventListener('load', handleLedsOverlay);
+
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
     </script>
 </body>
