@@ -936,7 +936,43 @@
         window.addEventListener('scroll', revealOnScroll);
         revealOnScroll(); // ao carregar
 
-        
+        // bgSobre e overlay para efeito na seção #sobre
+        const bgSobre = document.querySelector('.bg-sobre');
+        const overlay = document.querySelector('.sobre-overlay .overlay');
+
+        function handleScroll() {
+            const sobre = document.querySelector('#sobre');
+            if (!sobre || !bgSobre || !overlay) return;
+
+            const rect = sobre.getBoundingClientRect();
+
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                bgSobre.style.opacity = 1;
+                bgSobre.style.transform = 'scale(1)';
+                overlay.style.opacity = 1;
+            } else {
+                bgSobre.style.opacity = 0;
+                bgSobre.style.transform = 'scale(1.1)';
+                overlay.style.opacity = 0;
+            }
+        }
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
+
+        // Parallax na seção #sobre
+        function handleParallax() {
+            const sobre = document.querySelector('#sobre');
+            if (!sobre || !bgSobre) return;
+
+            const rect = sobre.getBoundingClientRect();
+
+            if (rect.bottom > 0 && rect.top < window.innerHeight) {
+                const scrollPercent = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+                bgSobre.style.transform = `scale(1) translateY(${scrollPercent * -30}px)`;
+            }
+        }
+        window.addEventListener('scroll', handleParallax);
+        handleParallax();
 
         // Revelar cards LEDS (scroll-fade-up)
         const ledsCards = document.querySelectorAll('.leds-card.scroll-fade-up');
