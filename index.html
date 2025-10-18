@@ -930,17 +930,7 @@
         
 
         // Revelar cards LEDS (scroll-fade-up)
-        const ledsCards = document.querySelectorAll('.leds-card.scroll-fade-up');
-        function revealLedsCards() {
-            ledsCards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                if (rect.top < window.innerHeight - 100) {
-                    card.classList.add('visible');
-                }
-            });
-        }
-        window.addEventListener('scroll', revealLedsCards);
-        revealLedsCards();
+        
 
         // Revelar todos elementos scroll-fade-up
         const scrollUpElements = document.querySelectorAll('.scroll-fade-up');
@@ -955,23 +945,7 @@
         window.addEventListener('scroll', revealUp);
         revealUp();
 
-        // Escurecer imagem de fundo seção LEDS ao rolar
-        function handleLedsOverlay() {
-            const ledsSection = document.getElementById('juve');
-            const overlay = document.getElementById('leds-overlay');
-            if (!ledsSection || !overlay) return;
-
-            const rect = ledsSection.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-
-            if (rect.top < windowHeight && rect.bottom > 0) {
-                overlay.style.background = 'rgba(0, 0, 0, 0.45)';
-            } else {
-                overlay.style.background = 'rgba(0, 0, 0, 0)';
-            }
-        }
-        window.addEventListener('scroll', handleLedsOverlay);
-        window.addEventListener('load', handleLedsOverlay);
+        
 
         document.querySelectorAll('a[href^="#"]').forEach(link => {
             link.addEventListener('click', function (e) {
